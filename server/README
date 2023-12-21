@@ -1,0 +1,7 @@
+packages installed:
+nodemon
+express
+pg 
+sequelize
+body-parser
+cors
