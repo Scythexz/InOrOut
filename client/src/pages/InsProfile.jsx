@@ -1,14 +1,14 @@
 import React from 'react';
 import Navbar from '../components/navbar';
 
-function InsAddClass() {
+function InsProfile() {
   return (
     <div>
       <Navbar />
-      <h1>Instructor's Add Class Page</h1>
+      <h1>Instructor's Profile Page</h1>
       {/* Add your content for the home page */}
     </div>
   );
 }
 
-export default InsAddClass;
+export default InsProfile;

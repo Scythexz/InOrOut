@@ -1,0 +1,19 @@
+/* src/styles/stdClassCard.css */
+
+.std-class-card {
+    border: 1px solid #ddd;
+    padding: 16px;
+    margin: 16px;
+    width: 200px;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  
+  .std-class-card h2 {
+    color: #333;
+  }
+  
+  .std-class-card p {
+    margin: 8px 0;
+    color: #666;
+  }
