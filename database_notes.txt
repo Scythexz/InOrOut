@@ -1,0 +1,3 @@
+creating "user" table in database
+
+CREATE TABLE `inorout`.`users` (`id` INT(12) NOT NULL AUTO_INCREMENT , `full_name` VARCHAR(128) NOT NULL , `password` VARCHAR(128) NOT NULL , `email` VARCHAR(128) NOT NULL , `position` ENUM("Instructor", "Student") NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
