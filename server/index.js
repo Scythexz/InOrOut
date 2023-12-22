@@ -69,7 +69,7 @@ app.post('/api/login', async (req, res) => {
   try {
     const user = await Users.findOne({ where: { email, password } });
     if (user) {
-      res.json({ success: true, message: 'Login successful' });
+      res.json({ success: true, message: 'Login successful', userType: user.userType });
     } else {
       res.json({ success: false, message: 'Invalid credentials' });
     }

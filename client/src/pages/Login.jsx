@@ -17,7 +17,18 @@ function Login() {
       });
 
       console.log(response.data);
-      navigate('/ins-Home');
+
+      // Check the user type after successful login
+      const userType = response.data.userType;
+
+      // Navigate to the corresponding home page based on user type
+      if (userType === 'instructor') {
+        navigate('/ins-home');
+      } else if (userType === 'student') {
+        navigate('/std-home');
+      } else {
+        console.error('Unknown user type');
+      }
     } catch (error) {
       console.error('Error:', error.response.data.message);
     }
