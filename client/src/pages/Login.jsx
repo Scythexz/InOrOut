@@ -25,7 +25,7 @@ function Login() {
       <h1>Login Page</h1>
       <form>
         <label>
-          Username:
+          Email:
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         </label>
         <br />
