@@ -29,6 +29,7 @@ function Login() {
       } else {
         console.error('Unknown user type');
       }
+      console.log(response.data.userType);
     } catch (error) {
       console.error('Error:', error.response.data.message);
     }

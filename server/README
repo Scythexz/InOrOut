@@ -5,3 +5,5 @@ pg
 sequelize
 body-parser
 cors
+jsonwebtoken
+bcrypt
