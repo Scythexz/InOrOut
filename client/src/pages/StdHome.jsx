@@ -15,6 +15,7 @@ function StdHome() {
         <Navbar />
         <h1>Student Home Page</h1>
         <input type="text" placeholder="Invite Code" />
+        <button>Join Class</button>
         <StdClassCard classData={classData} />
       </div>
     );
