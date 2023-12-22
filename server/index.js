@@ -18,7 +18,7 @@ app.use(cors());
 
 // Setting Up Sequelize:
 // Creating a Sequelize instance to connect to a PostgreSQL database.
-// Defining a User model with attributes username and password.
+// Defining a User model with attributes full_name, password, email and userType
 
 const sequelize = new Sequelize({
   dialect: 'postgres',
@@ -28,7 +28,7 @@ const sequelize = new Sequelize({
   database: 'inorout',
 });
 
-const User = sequelize.define('User', {
+const Users = sequelize.define('Users', {
   full_name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -50,7 +50,7 @@ const User = sequelize.define('User', {
 });
 
 // Syncing Sequelize Model with Database:
-// Synchronizing the User model with the database. This creates the User table if it doesn't exist.
+// Synchronizing the Users model with the database. This creates the Users table if it doesn't exist.
 
 sequelize.sync().then(() => {
   app.listen(PORT, () => {
@@ -61,13 +61,13 @@ sequelize.sync().then(() => {
 
 // Handling Login Request:
 // Handling a POST request to the /api/login endpoint.
-// Attempting to find a user in the database with the provided username and password.
+// Attempting to find a user in the database with the provided password and email
 // Sending a JSON response indicating success or failure.
 
 app.post('/api/login', async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   try {
-    const user = await User.findOne({ where: { username, password } });
+    const user = await Users.findOne({ where: { email, password } });
     if (user) {
       res.json({ success: true, message: 'Login successful' });
     } else {
@@ -82,13 +82,15 @@ app.post('/api/login', async (req, res) => {
 
 // Handling Registration Request:
 // Handling a POST request to the /api/register endpoint.
-// Creating a new user in the database with the provided username and password.
+// Creating a new user in the database with the provided full_name, password, email and userType
 // Sending a JSON response indicating success or failure.
 
 app.post('/api/register', async (req, res) => {
-  const { username, password } = req.body;
+  const { full_name, password, email, userType} = req.body;
+  // console.log('Received registration data:', { full_name, password, email, userType });
+
   try {
-    const user = await User.create({ username, password });
+    const user = await Users.create({ full_name, password, email, userType });
     res.json({ success: true, message: 'Registration successful' });
   } catch (error) {
     console.error(error);

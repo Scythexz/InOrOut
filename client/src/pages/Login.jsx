@@ -1,20 +1,23 @@
 // src/pages/Login.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const response = await axios.post('http://localhost:5000/api/login', {
-        username,
+        email,
         password,
       });
 
       console.log(response.data);
+      navigate('/ins-Home');
     } catch (error) {
       console.error('Error:', error.response.data.message);
     }
@@ -26,7 +29,7 @@ function Login() {
       <form>
         <label>
           Email:
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <br />
         <label>

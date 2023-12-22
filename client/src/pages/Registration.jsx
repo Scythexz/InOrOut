@@ -1,22 +1,28 @@
 // src/pages/Registration.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Registration() {
-  const [username, setUsername] = useState('');
+  const [full_name, setFull_Name] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [userType, setUserType] = useState('');
 
+  const navigate = useNavigate();
+
   const handleRegistration = async () => {
     try {
       const response = await axios.post('http://localhost:5000/api/register', {
-        username,
+        full_name,
         password,
+        email,
+        userType,
       });
-
+      
+      
       console.log(response.data);
+      navigate('/');
     } catch (error) {
       console.error('Error:', error.response.data.message);
     }
@@ -28,7 +34,7 @@ function Registration() {
       <form>
         <label>
           Full Name:
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="text" value={full_name} onChange={(e) => setFull_Name(e.target.value)} />
         </label>
         <br />
         <label>
