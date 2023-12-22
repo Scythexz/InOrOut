@@ -7,6 +7,7 @@ function InsHome() {
     const classData = {
         className: 'Mathematics 101',
         classSchedule: 'MWF 10:00 AM - 11:30 AM',
+        classCode: 'MATH101',
         // Add other class properties as needed
       }; 
 
@@ -20,6 +21,7 @@ function InsHome() {
           <tr>
             <th>Class Name</th>
             <th>Class Schedule</th>
+            <th>Class Code</th>
             <th>Manage</th>
           </tr>
         </thead>

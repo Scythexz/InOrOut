@@ -3,7 +3,7 @@ import React from 'react';
 import '../styles/insClassCard.css';
 
 function InsClassCard({ classData }) {
-  const { className, classSchedule } = classData;
+  const { className, classSchedule, classCode } = classData;
 
   const handleDelete = () => {
     // Add logic for deleting the class
@@ -27,6 +27,7 @@ function InsClassCard({ classData }) {
           <tr>
             <td>{className}</td>
             <td>{classSchedule}</td>
+            <td>{classCode}</td>
             <td>
               <button onClick={handleDelete}>Delete</button>
               <button onClick={handleEdit}>Edit</button>
