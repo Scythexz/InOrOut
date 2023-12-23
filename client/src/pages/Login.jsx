@@ -8,6 +8,7 @@ import logo from '../img/inorout.png';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [full_name, setFull_Name] = useState('');
 
   const navigate = useNavigate();
 
@@ -23,8 +24,10 @@ function Login() {
 
       // Check the user type after successful login
       // const userType = response.data.userType;
-      const { success, userType, message } = response.data;
+      // const { success, userType, message } = response.data;
+      const { success, userType, message, token, full_name } = response.data;
 
+      
       // Navigate to the corresponding home page based on user type
       if (userType === 'instructor') {
         navigate('/ins-home');
@@ -35,6 +38,20 @@ function Login() {
       }
       console.log(response.data.userType);
       if (success) {
+         // Save data to sessionStorage
+         sessionStorage.setItem('token', token);
+         sessionStorage.setItem('userType', userType);
+         sessionStorage.setItem('full_name', full_name);
+         sessionStorage.setItem('email', email);
+ 
+         // Log saved data
+         console.log('-----------');
+         console.log('Token:', token);
+         console.log('User Type:', userType);
+         console.log('Full Name:', full_name);
+         console.log('Email:', email);
+
+         
         console.log(`Login successful! User Type: ${userType}`);
         // Now you can use userType to navigate accordingly
       } else {

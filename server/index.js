@@ -3,8 +3,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { Sequelize, DataTypes } from 'sequelize';
-
 import jwt from 'jsonwebtoken';
+import session from 'express-session';
 
 // Setting Up Express App:
 // Creating an instance of the Express application.
@@ -20,6 +20,14 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
+// Set up express-session middleware
+app.use(
+  session({
+    secret: 'your_session_secret', // Replace with your session secret
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 
 // Setting Up Sequelize:
@@ -103,7 +111,11 @@ app.post('/api/login', async (req, res) => {
       const token = jwt.sign({ email, full_name, userType: user.userType }, JWT_SECRET, {
         expiresIn: '1h', // Token expiration time
       });
+
+
+      console.log(`User logged in - full_name: ${full_name}, email: ${email}, userType: ${userType}`);
       
+
       res.json({ success: true, userType: user.userType, message: 'Login successful', token });
     } else {
       res.json({ success: false, message: 'Invalid credentials' });
@@ -113,16 +125,6 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
-//     if (user) {
-//       res.json({ success: true, message: 'Login successful', userType: user.userType });
-//     } else {
-//       res.json({ success: false, message: 'Invalid credentials' });
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ success: false, message: 'Internal server error' });
-//   }
-// });
 
 // Protected route example
 app.get('/api/protected', verifyToken, (req, res) => {
@@ -136,7 +138,6 @@ app.get('/api/protected', verifyToken, (req, res) => {
 
 app.post('/api/register', async (req, res) => {
   const { full_name, password, email, userType} = req.body;
-  // console.log('Received registration data:', { full_name, password, email, userType });
 
   try {
     const user = await Users.create({ full_name, password, email, userType });
@@ -146,3 +147,4 @@ app.post('/api/register', async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
+

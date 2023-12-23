@@ -7,3 +7,4 @@ body-parser
 cors
 jsonwebtoken
 bcrypt
+express-session
