@@ -22,16 +22,7 @@ function InsClassCard({ classData }) {
 
   return (
     // <div className="ins-class-card">
-      <center>
-      <table class="styled-table">
-        <thead>
-        <tr>
-            <th>Class Name</th>
-            <th>Class Schedule</th>
-            <th>Class Code</th>
-            <th>Manage</th>
-          </tr>
-        </thead>
+      <table className="ins-class-card">
         <tbody>
           <tr>
             <td>{className}</td>
@@ -45,6 +36,8 @@ function InsClassCard({ classData }) {
           </tr>
         </tbody>
       </table></center>
+    // </div>
+      </table>
     // </div>
   );
 }
