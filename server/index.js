@@ -173,3 +173,28 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
+
+// Instructor Adding Classes
+app.post('/api/ins-add-class', async (req, res) => {
+  const { class_name, class_schedule, class_code } = req.body;
+
+  try {
+    const instructor = 'Unknown';
+
+    const newClass = await Classes.create({
+      instructor,
+      class_name,
+      class_schedule,
+      class_status: 'Meeting',
+      class_code,
+    });
+
+    res.json({ success: true, message: 'Class added successfully', newClass });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+
+
