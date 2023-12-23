@@ -2,9 +2,21 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  background-color: #333;
+  background-color: #D9D9D9;
+  padding: 10px;
+
+}
+i{
+  color:#05253A;
+  size: 100px;
   padding: 10px;
 }
+
+
+img{
+  height: 30px;
+}
+
 
 .navbar-list {
   list-style: none;
@@ -14,11 +26,13 @@
 }
 
 .navbar-list-right {
-  margin-left: auto; /* Push the right-side items to the right */
+  margin-left: auto;
+ /* Push the right-side items to the right */
 }
 
 .navbar-item {
   margin-right: 20px;
+
 }
 
 .navbar-item:last-child {

@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import "../styles/Loginandregistration.css";
+import logo from '../img/inorout.png';
 
 function Registration() {
   const [username, setUsername] = useState('');
@@ -23,9 +25,17 @@ function Registration() {
   };
 
   return (
-    <div>
-      <h1>Registration Page</h1>
+    <div class = 'container flex'>
+      <div class ='login-page flex'>
+        <div class ='text'>
+          <div class='logo'>
+          <img src={logo}/>
+          </div>
+          <p class="slogan">Save time, no hassle. Class alerts in a flash</p>
+        </div>
+      
       <form>
+      <h1>Registration Page</h1>
         <label>
           Full Name:
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -41,14 +51,16 @@ function Registration() {
           <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <br />
-        <label>
+        <center>
+        <label class="choose">
           <input
             type="radio"
             value="instructor"
             checked={userType === 'instructor'}
             onChange={() => setUserType('instructor')}
           />
-          Instructor
+          
+          Instructor &nbsp;
           <input
             type="radio"
             value="student"
@@ -57,14 +69,17 @@ function Registration() {
           />
           Student
         </label>
+        </center>
         <br></br>
-        <button type="button" onClick={handleRegistration}>
+        <button type="button" class="loginbutton" onClick={handleRegistration}>
           Register
         </button>
-      </form>
-      <p>
+        <p class="noacc">
         Already have an account? <Link to="/">Sign In</Link>.
       </p>
+      </form>
+
+    </div>
     </div>
   );
 }

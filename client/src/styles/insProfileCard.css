@@ -11,10 +11,12 @@
     border: 1px solid #000000;
     padding: 15px;
     margin: 10px;
-    background-color: #a52661;
+    background-color: #D9D9D9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%; /* Adjust as needed */
+    width:max-content; /* Adjust as needed */
     text-align: left;
+    border-radius: 20px;
+    color: #05253A;
   }
   
   .profile-section h2 {
@@ -33,5 +35,18 @@
   
   button {
     margin-left: 10px;
+    background: none;
+    border: none;
   }
   
+i{
+  background: none;
+  size: 20px;
+}
+i:hover{
+  color:#c68888;
+}
+
+hr{
+  background: #05253A;
+}

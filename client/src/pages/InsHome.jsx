@@ -14,9 +14,9 @@ function InsHome() {
   return (
     <div>
       <Navbar />
-      <h1>Instructor's Home Page</h1>
+      {/* <h1>Instructor's Home Page</h1> */}
       <AddClass />
-      <table>
+      <table class="styled-table">
         <thead>
           <tr>
             <th>Class Name</th>
@@ -25,8 +25,12 @@ function InsHome() {
             <th>Manage</th>
           </tr>
         </thead>
+        <tbody>
+        <InsClassCard classData={classData} />
+        </tbody>
+
       </table>
-      <InsClassCard classData={classData} />
+      {/* <InsClassCard classData={classData} /> */}
       {/* Add your content for the home page */}
     </div>
   );

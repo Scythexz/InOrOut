@@ -14,9 +14,9 @@ function StdProfileCard() {
       <div className="profile-section">
         <h2>Basic Info</h2>
         <ul>
-          <li>Name <button onClick={() => handleEdit('Name')}>Edit</button></li>
+          <li>Name <button onClick={() => handleEdit('Name')}><i class='fas fa-pencil-alt'></i></button></li>
           <hr></hr>
-          <li>Email <button onClick={() => handleEdit('Email')}>Edit</button></li>
+          <li>Email <button onClick={() => handleEdit('Email')}><i class='fas fa-pencil-alt'></i></button></li>
         </ul>
       </div>
 
@@ -24,7 +24,7 @@ function StdProfileCard() {
       <div className="profile-section">
         <h2>Security</h2>
         <ul>
-          <li>Password <button onClick={() => handleEdit('Password')}>Edit</button></li>
+          <li>Password <button onClick={() => handleEdit('Password')}><i class='fas fa-pencil-alt'></i></button></li>
         </ul>
       </div>
     </div>
