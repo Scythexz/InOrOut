@@ -1,4 +1,10 @@
 /* src/styles/insClassCard.css */
+body {
+  margin: 30px;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Josefin Sans', sans-serif;
+}
 
 .ins-class-card {
     width: 100%;
@@ -9,7 +15,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  table {
+  /* table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
@@ -24,8 +30,70 @@
   th {
     background-color: #6e008a;
     color:#ffffff;
-  }
+  } */
   
   button {
     margin-right: 5px;
   }
+
+
+
+  .addclass{
+    text-align: center;
+    margin-bottom: 20px;
+    background: #C6BF88;
+    border: none;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    color: #25403B;
+  }
+
+  .addclass:hover{
+    text-align: center;
+    margin-bottom: 20px;
+    background: #c68888;
+    border: none;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    color: #4e5833;
+  }
+
+
+
+
+
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px;
+    font-size: 0.9em;
+    font-family: 'Josefin Sans', sans-serif;
+    min-width: 400px;
+    width: 70%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+
+.styled-table thead tr {
+  background: #D9D9D9;
+  color: #05253A;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid rgba(0, 152, 122, 0.5);
+}

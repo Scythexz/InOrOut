@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/navbar';
 import StdClassCard from '../components/stdClassCard';
-
+import '../styles/stdhome.css';
 function StdHome() {
     const classData = {
       title: 'Mathematics 101',
@@ -13,9 +13,9 @@ function StdHome() {
     return (
       <div>
         <Navbar />
-        <h1>Student Home Page</h1>
-        <input type="text" placeholder="Invite Code" />
-        <button>Join Class</button>
+        <br></br>
+        <center><input type="text" placeholder="Invite Code" className='inv'/>
+        <button className='join'><i class='fas fa-plus'></i></button></center>
         <StdClassCard classData={classData} />
       </div>
     );

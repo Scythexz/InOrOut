@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "../styles/navbar.css";
-import logo from '../img/logo.png';
+import logo from '../img/navlogo.png';
 
 function Navbar() {
   // Retrieve userType from sessionStorage
