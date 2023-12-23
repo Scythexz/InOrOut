@@ -18,10 +18,12 @@ function Login() {
         password,
       });
 
+  
       console.log(response.data);
 
       // Check the user type after successful login
-      const userType = response.data.userType;
+      // const userType = response.data.userType;
+      const { success, userType, message } = response.data;
 
       // Navigate to the corresponding home page based on user type
       if (userType === 'instructor') {
@@ -32,6 +34,12 @@ function Login() {
         console.error('Unknown user type');
       }
       console.log(response.data.userType);
+      if (success) {
+        console.log(`Login successful! User Type: ${userType}`);
+        // Now you can use userType to navigate accordingly
+      } else {
+        console.log(`Login failed. ${message}`);
+      }
     } catch (error) {
       console.error('Error:', error.response.data.message);
     }
@@ -40,16 +48,16 @@ function Login() {
   return (
 
 
-    <div class = 'container flex'>
-      <div class ='login-page flex'>
-        <div class ='text'>
-          <div class='logo'>
+    <div className = 'container flex'>
+      <div className ='login-page flex'>
+        <div className ='text'>
+          <div className='logo'>
           <img src={logo}/>
           </div>
-          <p class="slogan">Save time, no hassle. Class alerts in a flash</p>
+          <p className="slogan">Save time, no hassle. Class alerts in a flash</p>
         </div>
             <form>
-            <h1 class="loginh1">Login Page</h1>
+            <h1 className="loginh1">Login Page</h1>
             <hr></hr>
               <label>
                 Email:
@@ -63,12 +71,12 @@ function Login() {
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
               
               <br />
-              <button type="button" class="loginbutton"onClick={handleLogin}>
+              <button type="button" className="loginbutton"onClick={handleLogin}>
                 Login
               </button>
-              <p class="noacc">
+              <p className="noacc">
               Don't have an account? </p>
-              <p class="noacc"><Link to="/registration">Register here</Link>
+              <p className="noacc"><Link to="/registration">Register here</Link>
               </p>
             </form>
         </div>

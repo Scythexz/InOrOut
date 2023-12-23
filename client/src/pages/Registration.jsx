@@ -31,13 +31,13 @@ function Registration() {
   };
 
   return (
-    <div class = 'container flex'>
-      <div class ='login-page flex'>
-        <div class ='text'>
-          <div class='logo'>
+    <div className = 'container flex'>
+      <div className ='login-page flex'>
+        <div className ='text'>
+          <div className='logo'>
           <img src={logo}/>
           </div>
-          <p class="slogan">Save time, no hassle. Class alerts in a flash</p>
+          <p className="slogan">Save time, no hassle. Class alerts in a flash</p>
         </div>
       
       <form>
@@ -58,7 +58,7 @@ function Registration() {
         </label>
         <br />
         <center>
-        <label class="choose">
+        <label className="choose">
           <input
             type="radio"
             value="instructor"
@@ -77,10 +77,10 @@ function Registration() {
         </label>
         </center>
         <br></br>
-        <button type="button" class="loginbutton" onClick={handleRegistration}>
+        <button type="button" className="loginbutton" onClick={handleRegistration}>
           Register
         </button>
-        <p class="noacc">
+        <p className="noacc">
         Already have an account? <Link to="/">Sign In</Link>.
       </p>
       </form>
