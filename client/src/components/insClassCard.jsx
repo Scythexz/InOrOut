@@ -21,8 +21,8 @@ function InsClassCard({ classData }) {
   };
 
   return (
-    <div className="ins-class-card">
-      <table>
+    // <div className="ins-class-card">
+      <table className="ins-class-card">
         <tbody>
           <tr>
             <td>{className}</td>
@@ -36,7 +36,7 @@ function InsClassCard({ classData }) {
           </tr>
         </tbody>
       </table>
-    </div>
+    // </div>
   );
 }
 
