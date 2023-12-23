@@ -8,7 +8,7 @@ function InsHome() {
         className: 'Mathematics 101',
         classSchedule: 'MWF 10:00 AM - 11:30 AM',
         classCode: 'MATH101',
-        // Add other class properties as needed
+        // Add other className properties as needed
       }; 
 
   return (
@@ -25,13 +25,11 @@ function InsHome() {
             <th>Manage</th>
           </tr>
         </thead>
-        <tbody>
+        {/* <tbody>
         <InsClassCard classData={classData} />
-        </tbody>
-
+        </tbody> */}
       </table>
-      {/* <InsClassCard classData={classData} /> */}
-      {/* Add your content for the home page */}
+      <InsClassCard classData={classData} />
     </div>
   );
 }

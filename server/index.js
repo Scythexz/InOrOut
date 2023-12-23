@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { Sequelize, DataTypes } from 'sequelize';
 
+import jwt from 'jsonwebtoken';
+
 // Setting Up Express App:
 // Creating an instance of the Express application.
 // Configuring the app to use body-parser for parsing JSON in request bodies.
@@ -11,10 +13,13 @@ import { Sequelize, DataTypes } from 'sequelize';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const SECRET_KEY = 'your_secret_key'; // Replace with your secret key
 
 
 app.use(bodyParser.json());
 app.use(cors());
+
+
 
 
 // Setting Up Sequelize:
@@ -60,6 +65,27 @@ sequelize.sync().then(() => {
 });
 
 
+// Secret key for JWT, should be stored securely, not hardcoded
+const JWT_SECRET = 'your-secret-key';
+
+// Middleware for token verification
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization;
+
+  if (!token) {
+    return res.status(403).json({ success: false, message: 'Token not provided' });
+  }
+
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ success: false, message: 'Failed to authenticate token' });
+    }
+
+    req.user = decoded;
+    next();
+  });
+};
+
 // Handling Login Request:
 // Handling a POST request to the /api/login endpoint.
 // Attempting to find a user in the database with the provided password and email
@@ -69,8 +95,16 @@ app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await Users.findOne({ where: { email, password } });
+    
     if (user) {
-      res.json({ success: true, message: 'Login successful', userType: user.userType });
+      const { full_name, userType } = user;
+      // Create a JWT token upon successful login
+
+      const token = jwt.sign({ email, full_name, userType: user.userType }, JWT_SECRET, {
+        expiresIn: '1h', // Token expiration time
+      });
+      
+      res.json({ success: true, userType: user.userType, message: 'Login successful', token });
     } else {
       res.json({ success: false, message: 'Invalid credentials' });
     }
@@ -79,7 +113,21 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
+//     if (user) {
+//       res.json({ success: true, message: 'Login successful', userType: user.userType });
+//     } else {
+//       res.json({ success: false, message: 'Invalid credentials' });
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ success: false, message: 'Internal server error' });
+//   }
+// });
 
+// Protected route example
+app.get('/api/protected', verifyToken, (req, res) => {
+  res.json({ success: true, message: 'Protected route accessed', user: req.user });
+});
 
 // Handling Registration Request:
 // Handling a POST request to the /api/register endpoint.

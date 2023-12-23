@@ -18,10 +18,12 @@ function Login() {
         password,
       });
 
+  
       console.log(response.data);
 
       // Check the user type after successful login
-      const userType = response.data.userType;
+      // const userType = response.data.userType;
+      const { success, userType, message } = response.data;
 
       // Navigate to the corresponding home page based on user type
       if (userType === 'instructor') {
@@ -32,6 +34,12 @@ function Login() {
         console.error('Unknown user type');
       }
       console.log(response.data.userType);
+      if (success) {
+        console.log(`Login successful! User Type: ${userType}`);
+        // Now you can use userType to navigate accordingly
+      } else {
+        console.log(`Login failed. ${message}`);
+      }
     } catch (error) {
       console.error('Error:', error.response.data.message);
     }
