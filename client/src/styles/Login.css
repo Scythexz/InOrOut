@@ -1,0 +1,174 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  padding: 0 15px;
+  min-height: 100vh;
+  justify-content: center;
+  background: #05253A;
+}
+
+.login-page {
+  justify-content: space-between;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.login-page .text {
+  margin-bottom: 90px;
+}
+
+.login-page h1 {
+  color: #FFFFFF;
+  font-size: 30px;
+  margin-bottom: 10px;
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+}
+
+.noacc {
+  font-size: 20px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction:column;
+  background: #4C847B;
+  border-radius: 23px;
+  padding: 20px;
+  max-width: 400px;
+  width: 30%;
+}
+
+form input {
+  height: 45px;
+  width: 100%;
+  border-radius: 10px;
+  background: #d9d9d9c7;    
+  font-size: 1rem;
+  padding: 0 14px;
+  border: none;
+
+}
+
+form input:focus {
+  outline: none;
+
+}
+
+::placeholder {
+  color: #777;
+  font-size: 1.063rem;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 15px;
+}
+
+.link .login {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #C6BF88;
+  padding: 15px 0;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.link .login:hover {
+  background: #0d65d9;
+}
+
+form a {
+  text-decoration: none;
+  color: #C6BF88;
+}
+
+.link .forgot {
+  color: #1877f2;
+  font-size: 0.875rem;
+}
+
+.link .forgot:hover {
+  text-decoration: underline;
+}
+
+hr {
+  border: none;
+  height: 3px;
+  background-color: #ccc;
+  margin-bottom: 20px;
+  background: #C6BF88;
+}
+
+.loginbutton {
+  text-align: center;
+  margin-bottom: 20px;
+  background: #C6BF88;
+  border: none;
+  height: auto;
+  padding: 10px;
+  border-radius: 10px;
+  color: #25403B;
+
+}
+
+
+label{
+  color: #D9D9D9;
+  text-align: left;
+}
+
+
+.slogan {
+  text-align: left;
+  color:#fff;
+  size: 30px;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 900px) {
+  .login-page {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .login-page .text {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 460px) {
+  .login-page h1 {
+    font-size: 3.5rem;
+  }
+
+  form {
+    padding: 15px;
+  }
+}
