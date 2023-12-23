@@ -40,16 +40,16 @@ function Login() {
   return (
 
 
-    <div class = 'container flex'>
-      <div class ='login-page flex'>
-        <div class ='text'>
-          <div class='logo'>
+    <div className= 'container flex'>
+      <div className='login-page flex'>
+        <div className='text'>
+          <div className='logo'>
           <img src={logo}/>
           </div>
-          <p class="slogan">Save time, no hassle. Class alerts in a flash</p>
+          <p className="slogan">Save time, no hassle. Class alerts in a flash</p>
         </div>
             <form>
-            <h1 class="loginh1">Login Page</h1>
+            <h1 className="loginh1">Login Page</h1>
             <hr></hr>
               <label>
                 Email:
@@ -63,12 +63,12 @@ function Login() {
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
               
               <br />
-              <button type="button" class="loginbutton"onClick={handleLogin}>
+              <button type="button" className="loginbutton"onClick={handleLogin}>
                 Login
               </button>
-              <p class="noacc">
+              <p className="noacc">
               Don't have an account? </p>
-              <p class="noacc"><Link to="/registration">Register here</Link>
+              <p className="noacc"><Link to="/registration">Register here</Link>
               </p>
             </form>
         </div>
@@ -106,9 +106,9 @@ function Login() {
 
 
 
-    // <div class="container flex">
-    //   <div class="facebook-page flex">
-    //     <div class="text">
+    // <div className="container flex">
+    //   <div className="facebook-page flex">
+    //     <div className="text">
     //       <h1>facebook</h1>
     //       <p>Connect with friends and the world </p>
     //       <p> around you on Facebook.</p>
@@ -116,12 +116,12 @@ function Login() {
     //     <form action="#">
     //       <input type="email" placeholder="Email or phone number" required>
     //       <input type="password" placeholder="Password" required>
-    //       <div class="link">
-    //         <button type="submit" class="login">Login</button>
-    //         <a href="#" class="forgot">Forgot password?</a>
+    //       <div className="link">
+    //         <button type="submit" className="login">Login</button>
+    //         <a href="#" className="forgot">Forgot password?</a>
     //       </div>
     //       <hr>
-    //       <div class="button">
+    //       <div className="button">
     //         <a href="#">Create new account</a>
     //       </div>
     //     </form>

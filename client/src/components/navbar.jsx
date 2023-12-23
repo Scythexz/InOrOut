@@ -9,7 +9,7 @@ function Navbar() {
     <nav className="navbar">
       <ul className="navbar-list">
         <li className="navbar-item">
-          <Link to="/ins-home"><img class="navlo" src={logo}/></Link>
+          <Link to="/ins-home"><img className="navlo" src={logo}/></Link>
           {/* <Link to="/std-home">''LogoPlaceholder''</Link> */}
           {/* put code to link to either std-home or ins-home depending on who is logged in*/}
         </li>
@@ -17,17 +17,17 @@ function Navbar() {
 
       <ul className="navbar-list navbar-list-right">
         <li className="navbar-item">
-          <Link to="/ins-home"><i class='fas fa-home'></i></Link>
+          <Link to="/ins-home"><i className='fas fa-home'></i></Link>
           {/* <Link to="/std-home">Home</Link> */}
           {/* put code to link to either std-home or ins-home depending on who is logged in*/}
         </li>
         <li className="navbar-item">
-          <Link to="/ins-profile"><i class='fas fa-user'></i></Link>
+          <Link to="/ins-profile"><i className='fas fa-user'></i></Link>
           {/* <Link to="/std-profile">Profile</Link> */}
           {/* put code to link to either std-profile or ins-profile depending on who is logged in*/}
         </li>
         <li className="navbar-item">
-          <Link to="/"><i class='fad fa-door-open' ></i></Link>
+          <Link to="/"><i className='fad fa-door-open' ></i></Link>
         </li>
       </ul>
     </nav>
