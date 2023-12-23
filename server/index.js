@@ -5,7 +5,8 @@ import cors from 'cors';
 import { Sequelize, DataTypes } from 'sequelize';
 import jwt from 'jsonwebtoken';
 import session from 'express-session';
-
+import nodemailer from 'nodemailer';
+// starting to implement email here
 
 // Setting Up Express App:
 // Creating an instance of the Express application.
@@ -124,9 +125,37 @@ const verifyToken = (req, res, next) => {
 
 
 
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'schoolclive1@gmail.com', // replace with your email
+    pass: 'blsl iefv otkz vppg', // replace with your email password
+  },
+});
 
 
+app.post('/api/send-email', async (req, res) => {
+  const { to, subject, text } = req.body;
 
+  try {
+    // Create an email message
+    const mailOptions = {
+      from: 'schoolclive1@gmail.com', // replace with your email
+      to: 'yinom84683@wenkuu.com',
+      subject: 'Sample',
+      text: 'Hi all, Good Day',
+    };
+
+    // Send the email
+    await transporter.sendMail(mailOptions);
+
+    console.log(`Email sent to: ${to}`);
+    res.json({ success: true, message: 'Email sent successfully' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
 
 
 

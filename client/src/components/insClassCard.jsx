@@ -1,6 +1,7 @@
 // src/components/InsClassCard.jsx
 import React, { useState } from 'react';
 import '../styles/insClassCard.css';
+import axios from 'axios';
 
 function InsClassCard({ classData, onToggleStatus }) {
   const { className, classSchedule, classCode } = classData;
@@ -16,10 +17,27 @@ function InsClassCard({ classData, onToggleStatus }) {
     console.log('Editing class:', className);
   };
 
-  const sendEmail = () => {
-    // Add logic for sending an email
-    alert('--Sent Email--')
-  };
+  const sendEmail = async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/api/send-email',
+        {
+          to: 'yinom84683@wenkuu.com', // replace with the recipient's email
+          subject: 'Sample Subject',
+          text: 'This is a sample email body.',
+        }
+      );
+  
+          // Check if the response is defined before accessing the data property
+    if (response && response.data) {
+      console.log(response.data);
+    } else {
+      console.error('Error: Invalid response from the server');
+    }
+  } catch (error) {
+    console.error('Error sending email:', error.response ? error.response.data.message : error.message);
+  }
+};
 
   
 
