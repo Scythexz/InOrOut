@@ -1,0 +1,14 @@
+.inv{
+    height: 45px;
+    width: max-content;
+    border-radius: 10px;
+    background: #d9d9d9c7;    
+    font-size: 1rem;
+    padding: 0 14px;
+    border: none;
+}
+
+.join{
+    background: #d9d9d9c7;
+    border-radius: 10px;
+}

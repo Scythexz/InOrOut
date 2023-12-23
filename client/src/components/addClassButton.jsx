@@ -11,7 +11,7 @@ function AddClass() {
   };
 
   return (
-    <button onClick={handleButtonClick}>
+    <button className='addclass' onClick={handleButtonClick}>
       Add Class
     </button>
   );
