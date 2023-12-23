@@ -14,22 +14,11 @@ function InsHome() {
   return (
     <div>
       <Navbar />
-      {/* <h1>Instructor's Home Page</h1> */}
+<center>
+  <br></br>
       <AddClass />
-      <table className="styled-table">
-        <thead>
-          <tr>
-            <th>Class Name</th>
-            <th>Class Schedule</th>
-            <th>Class Code</th>
-            <th>Manage</th>
-          </tr>
-        </thead>
-        {/* <tbody>
-        <InsClassCard classData={classData} />
-        </tbody> */}
-      </table>
-      <InsClassCard classData={classData} />
+
+      <InsClassCard classData={classData} /></center>
     </div>
   );
 }
