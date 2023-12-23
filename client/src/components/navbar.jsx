@@ -9,7 +9,7 @@ function Navbar() {
     <nav className="navbar">
       <ul className="navbar-list">
         <li className="navbar-item">
-          <Link to="/ins-home"><img src={logo}/></Link>
+          <Link to="/ins-home"><img class="navlo" src={logo}/></Link>
           {/* <Link to="/std-home">''LogoPlaceholder''</Link> */}
           {/* put code to link to either std-home or ins-home depending on who is logged in*/}
         </li>
