@@ -63,6 +63,31 @@ const Users = sequelize.define('Users', {
   },
 });
 
+// classes
+const Classes = sequelize.define('Classes', {
+  instructor: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  class_name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  class_schedule: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  class_status: {
+    type: DataTypes.ENUM('Meeting', 'No Meeting'),
+    allowNull: false,
+  },
+  class_code: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+});
+
 // Syncing Sequelize Model with Database:
 // Synchronizing the Users model with the database. This creates the Users table if it doesn't exist.
 
