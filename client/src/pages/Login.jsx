@@ -48,9 +48,9 @@ function Login() {
   return (
 
 
-    <div className = 'container flex'>
-      <div className ='login-page flex'>
-        <div className ='text'>
+    <div className= 'container flex'>
+      <div className='login-page flex'>
+        <div className='text'>
           <div className='logo'>
           <img src={logo}/>
           </div>
@@ -114,9 +114,9 @@ function Login() {
 
 
 
-    // <div class="container flex">
-    //   <div class="facebook-page flex">
-    //     <div class="text">
+    // <div className="container flex">
+    //   <div className="facebook-page flex">
+    //     <div className="text">
     //       <h1>facebook</h1>
     //       <p>Connect with friends and the world </p>
     //       <p> around you on Facebook.</p>
@@ -124,12 +124,12 @@ function Login() {
     //     <form action="#">
     //       <input type="email" placeholder="Email or phone number" required>
     //       <input type="password" placeholder="Password" required>
-    //       <div class="link">
-    //         <button type="submit" class="login">Login</button>
-    //         <a href="#" class="forgot">Forgot password?</a>
+    //       <div className="link">
+    //         <button type="submit" className="login">Login</button>
+    //         <a href="#" className="forgot">Forgot password?</a>
     //       </div>
     //       <hr>
-    //       <div class="button">
+    //       <div className="button">
     //         <a href="#">Create new account</a>
     //       </div>
     //     </form>

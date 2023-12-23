@@ -31,9 +31,9 @@ function Registration() {
   };
 
   return (
-    <div className = 'container flex'>
-      <div className ='login-page flex'>
-        <div className ='text'>
+    <div className= 'container flex'>
+      <div className='login-page flex'>
+        <div className='text'>
           <div className='logo'>
           <img src={logo}/>
           </div>
