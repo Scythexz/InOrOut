@@ -11,6 +11,10 @@ function InsHome() {
         // Add other className properties as needed
       }; 
 
+      const sendEmail = () => {
+        console.log('Send Email');
+      };
+
   return (
     <div>
       <Navbar />
@@ -18,7 +22,7 @@ function InsHome() {
   <br></br>
       <AddClass />
 
-      <InsClassCard classData={classData} /></center>
+      <InsClassCard classData={classData} onToggleStatus={sendEmail()}/></center>
     </div>
   );
 }

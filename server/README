@@ -8,3 +8,4 @@ cors
 jsonwebtoken
 bcrypt
 express-session
+nodemailer

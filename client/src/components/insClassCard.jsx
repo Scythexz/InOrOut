@@ -1,9 +1,10 @@
 // src/components/InsClassCard.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/insClassCard.css';
 
-function InsClassCard({ classData }) {
+function InsClassCard({ classData, onToggleStatus }) {
   const { className, classSchedule, classCode } = classData;
+  const [isStatusOn, setStatus] = useState(false);
 
   const handleDelete = () => {
     // Add logic for deleting the class
@@ -15,10 +16,25 @@ function InsClassCard({ classData }) {
     console.log('Editing class:', className);
   };
 
-  const handleStatus = () => {
-    // Add logic for managing the class status
-    console.log('Managing status for class:', className);
+  const sendEmail = () => {
+    // Add logic for sending an email
+    alert('--Sent Email--')
   };
+
+  
+
+
+  const handleToggle = () => {
+    // Toggle the status
+    setStatus(!isStatusOn);
+    if (!isStatusOn) {
+      console.log('-----Sent Email-----');
+      console.log('Slider status: On');
+      sendEmail();
+    } else {
+      console.log('Slider status: Off');
+    }
+  }
 
   return (
     // <div className="ins-class-card">
@@ -39,7 +55,12 @@ function InsClassCard({ classData }) {
             <td>
               <button onClick={handleDelete}>Delete</button>
               <button onClick={handleEdit}>Edit</button>
-              <button onClick={handleStatus}>Status</button>
+
+              <label className="sliderSwitch">
+              <input className='sliderInput' type="checkbox" checked={isStatusOn} onChange={handleToggle} />
+              <span className="slider round"></span>
+              </label>
+
             </td>
           </tr>
         </tbody>

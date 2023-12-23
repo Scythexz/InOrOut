@@ -6,6 +6,7 @@ import { Sequelize, DataTypes } from 'sequelize';
 import jwt from 'jsonwebtoken';
 import session from 'express-session';
 
+
 // Setting Up Express App:
 // Creating an instance of the Express application.
 // Configuring the app to use body-parser for parsing JSON in request bodies.
@@ -119,6 +120,17 @@ const verifyToken = (req, res, next) => {
   });
 };
 
+
+
+
+
+
+
+
+
+
+
+
 // Handling Login Request:
 // Handling a POST request to the /api/login endpoint.
 // Attempting to find a user in the database with the provided password and email
@@ -195,6 +207,3 @@ app.post('/api/ins-add-class', async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
-
-
-
