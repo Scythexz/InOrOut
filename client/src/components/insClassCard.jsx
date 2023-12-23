@@ -43,11 +43,8 @@ function InsClassCard({ classData }) {
             </td>
           </tr>
         </tbody>
-      </table></center>
-    // </div>
       </table>
-    // </div>
-  );
+  )
 }
 
 export default InsClassCard;
