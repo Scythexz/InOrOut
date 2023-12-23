@@ -38,7 +38,7 @@ const sequelize = new Sequelize({
   dialect: 'postgres',
   host: 'localhost',
   username: 'postgres',
-  password: 'kalyr',
+  password: 'clive.lim',
   database: 'inorout',
 });
 

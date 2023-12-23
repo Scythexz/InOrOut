@@ -1,0 +1,25 @@
+/* insAddClassCard.css */
+
+/* Style for the Add Class Card container */
+.add-class-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    width: 300px;
+  }
+  
+  /* Style for the form input fields */
+  .add-class-input {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 8px;
+  }
+  
+  /* Style for the Add Class button */
+  .add-class-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+  }
