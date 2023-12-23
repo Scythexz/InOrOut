@@ -1,22 +1,37 @@
 // src/pages/Login.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Loginandregistration.css";
 import logo from '../img/inorout.png';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const response = await axios.post('http://localhost:5000/api/login', {
-        username,
+        email,
         password,
       });
 
       console.log(response.data);
+
+      // Check the user type after successful login
+      const userType = response.data.userType;
+
+      // Navigate to the corresponding home page based on user type
+      if (userType === 'instructor') {
+        navigate('/ins-home');
+      } else if (userType === 'student') {
+        navigate('/std-home');
+      } else {
+        console.error('Unknown user type');
+      }
+      console.log(response.data.userType);
     } catch (error) {
       console.error('Error:', error.response.data.message);
     }
@@ -39,7 +54,7 @@ function Login() {
               <label>
                 Email:
                 </label>
-                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
               
               <br />
               <label>
