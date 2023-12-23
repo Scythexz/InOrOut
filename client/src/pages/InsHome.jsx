@@ -15,9 +15,8 @@ function InsHome() {
     <div>
       <Navbar />
       {/* <h1>Instructor's Home Page</h1> */}
-      <br></br>
-      <center><AddClass /></center>
-      {/* <table className="styled-table">
+      <AddClass />
+      <table className="styled-table">
         <thead>
           <tr>
             <th>Class Name</th>
