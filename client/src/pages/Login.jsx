@@ -16,7 +16,7 @@ function Login() {
     try {
       const response = await axios.post('http://localhost:5000/api/login', {
         email,
-        password
+        password,
       });
 
   
@@ -91,8 +91,7 @@ function Login() {
               <button type="button" className="loginbutton"onClick={handleLogin}>
                 Login
               </button>
-              <p className="noacc">
-              Don't have an account? </p>
+              <p className="noacc">Don't have an account? </p>
               <p className="noacc"><Link to="/registration">Register here</Link>
               </p>
             </form>

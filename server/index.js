@@ -174,7 +174,7 @@ app.post('/api/login', async (req, res) => {
       const { full_name, userType } = user;
       // Create a JWT token upon successful login
 
-      const token = jwt.sign({ email, full_name, userType: user.userType }, JWT_SECRET, {
+      const token = jwt.sign({ email, full_name: user.full_name, userType: user.userType }, JWT_SECRET, {
         expiresIn: '1h', // Token expiration time
       });
 
@@ -182,7 +182,7 @@ app.post('/api/login', async (req, res) => {
       console.log(`User logged in - full_name: ${full_name}, email: ${email}, userType: ${userType}`);
       
 
-      res.json({ success: true, userType: user.userType, message: 'Login successful', token });
+      res.json({ success: true, full_name: user.full_name, userType: user.userType, message: 'Login successful', token });
     } else {
       res.json({ success: false, message: 'Invalid credentials' });
     }
