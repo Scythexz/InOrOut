@@ -7,12 +7,11 @@ Database: [`PostgreSQL`](https://www.postgresql.org/download/)
 1. Clone this repository.
 2. Go into the directory using `cd InOrOut`.
 3. To install Node Package Manager go to client directory via `cd client` then install npm `npm install`
-4. Install the necessary dependencies found below.
+4. To install the necessary dependencies, please run `npm install`.
 5. Run the server via `node index.js`
 6. Run the application via `npm run dev`
 
 # Dependencies
-> note: please go to the corresponding directory before installing `cd server` `cd client`
 
 | Server             |                              | Client             |                              |
 |--------------------|------------------------------|--------------------|------------------------------|
