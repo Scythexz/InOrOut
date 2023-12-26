@@ -4,6 +4,7 @@ import Navbar from '../components/navbar';
 import "../styles/insAddClass.css";
 import { useNavigate } from 'react-router-dom';
 
+
 function InsAddClass() {
     const [class_name, setClass_Name] = useState('');
     const [class_schedule, setClass_Schedule] = useState('');

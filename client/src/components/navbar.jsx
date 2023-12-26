@@ -5,16 +5,14 @@ import "../styles/navbar.css";
 import logo from '../img/navlogo.png';
 
 function Navbar() {
-  // Retrieve userType from sessionStorage
   const navigate = useNavigate();
   const userType = sessionStorage.getItem('userType');
   const token = sessionStorage.getItem('token');
-  // const full_name = sessionStorage.getItem('full_name');
 
   console.log('------------');
   console.log('Retrieved userType from sessionStorage:', userType);
   console.log('Retrieved token from sessionStorage:', token);
-  // console.log('Retrieved full_name from sessionStorage:', full_name);
+
 
 const handleLogout = () => {
   ['token', 'email', 'userType', 'full_name'].forEach((e)=>{
@@ -42,9 +40,7 @@ const handleLogout = () => {
         <li className="navbar-item">
 
           {/* <Link to="/ins-home"><img className="navlo" src={logo}/></Link> */}
-          {/* <Link to="/std-home">''LogoPlaceholder''</Link> */}
 
-           {/* Conditional rendering of logo link based on userType */}
            <Link to={userType === 'instructor' ? '/ins-home' : (userType === 'student' ? '/std-home' : '/')}>
             <img className="navlo" src={logo} alt="Logo" />
             </Link>
@@ -55,9 +51,7 @@ const handleLogout = () => {
         <li className="navbar-item">
 
           {/* <Link to="/ins-home"><i className='fas fa-home'></i></Link> */}
-          {/* <Link to="/std-home">Home</Link> */}
           
-          {/* Conditional rendering of home link based on userType */}
           <Link to={userType === 'instructor' ? '/ins-home' : (userType === 'student' ? '/std-home' : '/')}>
             <i className='fas fa-home'></i>
             </Link>
@@ -65,10 +59,8 @@ const handleLogout = () => {
 
         <li className="navbar-item">
 
-          {/* <Link to="/ins-profile"><i className='fas fa-user'></i></Link>
-          <Link to="/std-profile">Profile</Link> */}
+          {/* <Link to="/ins-profile"><i className='fas fa-user'></i></Link> */}
 
-          {/* Conditional rendering of profile link based on userType */}
           <Link to={userType === 'instructor' ? '/ins-profile' : (userType === 'student' ? '/std-profile' : '/')}>
             <i className='fas fa-user'></i>
           </Link>

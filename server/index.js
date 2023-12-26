@@ -8,15 +8,11 @@ import session from 'express-session';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
-// Setting Up Express App:
-// Creating an instance of the Express application.
-// Configuring the app to use body-parser for parsing JSON in request bodies.
-// Enabling CORS for handling cross-origin requests.
+
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
-const SECRET_KEY = 'your-secret-key'; // Replace with your secret key
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -31,33 +27,9 @@ app.use(express.json());
 
 
 
-// // Set up express-session middleware
-// app.use(
-//   session({
-//     // secret: 'your_session_secret', // Replace with your session secret
-//     secret: 'your-secret-key', // Replace with your session secret
-//     resave: false,
-//     saveUninitialized: true,
-//   })
-// );
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// Setting Up Sequelize:
-// Creating a Sequelize instance to connect to a PostgreSQL database.
-// Defining a User model with attributes full_name, password, email and userType
 
 const sequelize = new Sequelize({
   dialect: 'postgres',
@@ -88,7 +60,6 @@ const Users = sequelize.define('Users', {
   },
 });
 
-// classes
 const Classes = sequelize.define('Classes', {
   instructor_email: {  
     type: DataTypes.STRING,
@@ -130,7 +101,7 @@ const Classes = sequelize.define('Classes', {
 
 
 // Syncing Sequelize Model with Database:
-// Synchronizing the Users model with the database. This creates the Users table if it doesn't exist.
+// Synchronizing the Users model with the database. This creates the tables if it doesn't exist.
 
 sequelize.sync().then(() => {
   app.listen(PORT, () => {
@@ -139,26 +110,7 @@ sequelize.sync().then(() => {
 });
 
 
-// Secret key for JWT, should be stored securely, not hardcoded
-// const JWT_SECRET = 'your-secret-key';
 
-// Middleware for token verification
-// const verifyToken = (req, res, next) => {
-//   const token = req.headers.authorization;
-
-//   if (!token) {
-//     return res.status(403).json({ success: false, message: 'Token not provided' });
-//   }
-
-//   jwt.verify(token, JWT_SECRET, (err, decoded) => {
-//     if (err) {
-//       return res.status(401).json({ success: false, message: 'Failed to authenticate token' });
-//     }
-
-//     req.user = decoded;
-//     next();
-//   });
-// };
 
  
 function authenticateToken(req, res, next) {
@@ -218,7 +170,7 @@ app.post('/api/send-email', async (req, res) => {
   try {
     // Create an email message
     const mailOptions = {
-      from: 'schoolclive1@gmail.com', // replace with your email
+      from: 'schoolclive1@gmail.com',
       to: 'yinom84683@wenkuu.com',
       subject: 'Sample',
       text: 'Hi all, Good Day',
@@ -251,42 +203,6 @@ app.post('/api/send-email', async (req, res) => {
 
 
 
-// Handling Login Request:
-// Handling a POST request to the /api/login endpoint.
-// Attempting to find a user in the database with the provided password and email
-// Sending a JSON response indicating success or failure.
-
-// app.post('/api/login', async (req, res) => {
-//   const { email, password } = req.body;
-//   try {
-//     const user = await Users.findOne({ where: { email, password } });
-    
-//     if (user) {
-//       const { full_name, userType } = user;
-//       // Create a JWT token upon successful login
-
-//       const token = jwt.sign({ email, full_name: user.full_name, userType: user.userType }, JWT_SECRET, {
-//         expiresIn: '1h', // Token expiration time
-//       });
-
-
-//       console.log(`User logged in - full_name: ${full_name}, email: ${email}, userType: ${userType}`);
-      
-
-//       res.json({ success: true, full_name: user.full_name, userType: user.userType, message: 'Login successful', token });
-
-      
-//     } else {
-//       res.json({ success: false, message: 'Invalid credentials' });
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ success: false, message: 'Internal server error' });
-//   }
-// });
-
-
-
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -294,18 +210,11 @@ app.post('/api/login', async (req, res) => {
     
     if (user) {
       const currentUser = { email: email, full_name: user.full_name, userType: user.userType };
-      // Create a JWT token upon successful login
 
       const token = jwt.sign(currentUser, process.env.ACCESS_TOKEN_SECRET);
 
-
-      // console.log(`User logged in - full_name: ${full_name}, email: ${email}, userType: ${userType}`);
-      
-
-      // res.json({ success: true, full_name: user.full_name, userType: user.userType, message: 'Login successful'});
       res.json({ token: token, userType: user.userType });
 
-      
     } else {
       res.json({ success: false, message: 'Invalid credentials' });
     }
@@ -339,11 +248,6 @@ app.get('/api/protected', authenticateToken, (req, res) => {
 
 
 
-// Handling Registration Request:
-// Handling a POST request to the /api/register endpoint.
-// Creating a new user in the database with the provided full_name, password, email and userType
-// Sending a JSON response indicating success or failure.
-
 app.post('/api/register', async (req, res) => {
   const { full_name, password, email, userType} = req.body;
 
@@ -372,7 +276,6 @@ app.post('/api/ins-add-class', authenticateToken, async (req, res) => {
 
   try {
     const { email, full_name, userType } = req.user;
-    // const classes = await Users.findOne({ where: { email, password } });
 
     const newClass = await Classes.create({
       instructor_email: email,
@@ -402,6 +305,16 @@ app.post('/api/ins-add-class', authenticateToken, async (req, res) => {
 
 
 
+app.get('/api/profile', authenticateToken, async (req, res) => {
+
+  try {
+
+  } catch (error) {
+
+  }
+})
+
+
 
 
 
@@ -418,6 +331,14 @@ app.get('/api/users', async (req, res) => {
 })
 
 
+
+
+
+
+
+
+
+
 app.get('/api/classes', async (req, res) => {
   try {
     const classes = await Classes.findAll();
@@ -426,8 +347,4 @@ app.get('/api/classes', async (req, res) => {
     console.error(error);
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
-})
-
-app.get('/api/classesWUser', authenticateToken, (req, res) => {
-  res.json(classes.filter(classes => classes.instructor === instructor))
 })
