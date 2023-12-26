@@ -50,6 +50,7 @@ function InsAddClass() {
   return (
     <div>
       <Navbar />
+      <center>
       <h1>Instructor's Add Class Page</h1>
       <div>
 
@@ -75,6 +76,7 @@ function InsAddClass() {
           </button>
         </form>
       </div>
+      </center>
     </div>
   );
 }

@@ -13,12 +13,14 @@ function InsProfile() {
   return (
     <div>
       <Navbar />
+      <center>
       <h1>Instructor's Profile Page</h1>
       <h1>Welcome, {decoded.full_name}</h1>
       <p>Info about you</p>
       {/* Add your content for the home page */}
       {/* Render the InsProfileCard component */}
       <InsProfileCard />
+      </center>
     </div>
   );
 }
