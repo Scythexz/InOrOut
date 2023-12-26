@@ -20,9 +20,9 @@ function InsProfileCard() {
       <div className="profile-section">
         <h2>Basic Info</h2>
         <ul>
-          <li>Name: {decoded.full_name}<button onClick={() => handleEdit('Name')}><i className='fas fa-pencil-alt'></i></button></li>
+          <li>Name: <h3 className=''>{decoded.full_name}</h3><button onClick={() => handleEdit('Name')}><i className='fas fa-pencil-alt'></i></button></li>
           <hr></hr>
-          <li>Email: {decoded.email}<button onClick={() => handleEdit('Email')}><i className='fas fa-pencil-alt'></i></button></li>
+          <li>Email: <h3 className=''>{decoded.email}</h3><button onClick={() => handleEdit('Email')}><i className='fas fa-pencil-alt'></i></button></li>
         </ul>
       </div>
 
@@ -30,7 +30,7 @@ function InsProfileCard() {
       <div className="profile-section">
         <h2>Security</h2>
         <ul>
-          <li>Password <button onClick={() => handleEdit('Password')}><i className='fas fa-pencil-alt'></i></button></li>
+          <li>Change password <button onClick={() => handleEdit('Password')}><i className='fas fa-pencil-alt'></i></button></li>
         </ul>
       </div>
     </div>
