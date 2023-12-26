@@ -18,8 +18,8 @@ function Login() {
         email,
         password,
       });
-
-      console.log('this is the response data:', response.data);
+      console.log('Start of the Login Console Logs');
+      console.log('This is the response data:', response.data);
 
       const { token, userType } = response.data;
 
@@ -35,11 +35,12 @@ function Login() {
       console.log('User Type:', response.data.userType);
          sessionStorage.setItem('token', token);
          sessionStorage.setItem('userType', userType);
-         console.log('Token:', token);
+         console.log('Set Token:', token);
          console.log('Set Session Storage - User Type:', userType);
+
          const decoded = jwtDecode(token);
          console.log('Decoded:', decoded);
-  
+         console.log('End of the Login Console Logs');
     } catch (error) {
       console.error('Error:', error.response.data.message);
     }

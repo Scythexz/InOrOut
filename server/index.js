@@ -172,8 +172,8 @@ app.post('/api/send-email', async (req, res) => {
     const mailOptions = {
       from: 'schoolclive1@gmail.com',
       to: 'yinom84683@wenkuu.com',
-      subject: 'Sample',
-      text: 'Hi all, Good Day',
+      subject: 'InOrOut: There will be no meeting today',
+      text: '***THIS IS AN AUTO-GENERATED MESSAGE***\n\nHi all, Good Day!\n\nThis is to inform you that USER will not be holding a meeting for today.',
     };
 
     // Send the email
@@ -343,6 +343,17 @@ app.get('/api/classes', async (req, res) => {
   try {
     const classes = await Classes.findAll();
     res.json(classes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+})
+
+app.get('/api/ins-show-classes', authenticateToken, async (req, res) => {
+  try {
+    const classes = await Classes.findAll();
+    // console.log(req.user);
+    res.json(classes.filter(classes => classes.instructor_name === req.user.full_name));
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: 'Internal server error' });

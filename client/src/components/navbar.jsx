@@ -1,10 +1,11 @@
 // src/components/Navbar.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import "../styles/navbar.css";
 import logo from '../img/navlogo.png';
 
 function Navbar() {
+
   const navigate = useNavigate();
   const userType = sessionStorage.getItem('userType');
   const token = sessionStorage.getItem('token');
@@ -12,6 +13,7 @@ function Navbar() {
   console.log('------------');
   console.log('Retrieved userType from sessionStorage:', userType);
   console.log('Retrieved token from sessionStorage:', token);
+  console.log('------------');
 
 
 const handleLogout = () => {
@@ -21,10 +23,6 @@ const handleLogout = () => {
   
   navigate('/');
 }
-
-
-
-
 
 
 
