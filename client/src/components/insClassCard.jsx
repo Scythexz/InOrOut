@@ -7,6 +7,8 @@ function InsClassCard() {
 
   const [classesList, setClasses] = useState([]);
   const [isStatusOn, setStatus] = useState(false);
+  // Start of changes
+  const [statusList, setStatusList] = useState([]);
   
   const handleDelete = () => {
     // Add logic for deleting the class
@@ -33,17 +35,19 @@ function InsClassCard() {
     }
     };
 
-    const handleToggle = () => {
+    const handleToggle = (index) => {
+      const newStatusList = [...statusList];
+      newStatusList[index] = !newStatusList[index];
+      setStatusList(newStatusList);
         // Toggle the status
-        setStatus(!isStatusOn);
-        if (!isStatusOn) {
-        console.log('-----Sent Email-----');
-        console.log('Slider status: On');
-        sendEmail();
+        if (newStatusList[index]) {
+          console.log('-----Sent Email-----');
+          console.log('Slider status: On');
+          sendEmail();
         } else {
-        console.log('Slider status: Off');
+          console.log('Slider status: Off');
         }
-    }
+      };
 
   useEffect(() => {
      axios.get('http://localhost:5000/api/ins-show-classes', {
@@ -53,6 +57,7 @@ function InsClassCard() {
         })
         .then((response) => {
           setClasses(response.data);
+          setStatusList(response.data.map(()=>false));
           console.log("This is the response data: ", response.data);
         })
        .catch((error) => {
@@ -81,7 +86,7 @@ return (
   </tr>
 </thead>
     <tbody>
-    {classesList.map((class_data) => (
+    {classesList.map((class_data, index) => (
       <tr key={class_data.id}>
         <td>{class_data.class_name}</td>
         <td>{class_data.class_schedule}</td>
@@ -91,7 +96,11 @@ return (
           <button onClick={handleEdit}>Edit</button>
 
           <label className="sliderSwitch">
-          <input className='sliderInput' type="checkbox" checked={isStatusOn} onChange={handleToggle}/>
+          <input 
+            className='sliderInput' 
+            type="checkbox" 
+            checked={statusList[index]} 
+            onChange={() => handleToggle(index)}/>
           <span className="slider round"></span>
           </label>
         </td>
