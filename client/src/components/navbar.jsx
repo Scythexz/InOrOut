@@ -1,5 +1,5 @@
 // src/components/Navbar.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../styles/navbar.css";
 import logo from '../img/navlogo.png';
@@ -7,16 +7,28 @@ import logo from '../img/navlogo.png';
 function Navbar() {
   // Retrieve userType from sessionStorage
   const userType = sessionStorage.getItem('userType');
-  const token = sessionStorage.getItem('token');
-  const full_name = sessionStorage.getItem('full_name');
+  // const token = sessionStorage.getItem('token');
+  // const full_name = sessionStorage.getItem('full_name');
 
   console.log('------------');
   console.log('Retrieved userType from sessionStorage:', userType);
-  console.log('Retrieved token from sessionStorage:', token);
-  console.log('Retrieved full_name from sessionStorage:', full_name);
+  // console.log('Retrieved token from sessionStorage:', token);
+  // console.log('Retrieved full_name from sessionStorage:', full_name);
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
-    
+
     <nav className="navbar">
       <ul className="navbar-list">
         <li className="navbar-item">

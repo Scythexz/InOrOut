@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/navbar';
 import AddClass from '../components/addClassButton';
 import InsClassCard from '../components/insClassCard';
@@ -11,9 +11,9 @@ function InsHome() {
         // Add other className properties as needed
       }; 
 
-      const sendEmail = () => {
-        console.log('Send Email');
-      };
+      // const sendEmail = () => {
+      //   console.log('Send Email');
+      // };
 
   return (
     <div>
@@ -22,7 +22,7 @@ function InsHome() {
   <br></br>
       <AddClass />
 
-      <InsClassCard classData={classData} onToggleStatus={sendEmail()}/></center>
+      <InsClassCard classData={classData} /*onToggleStatus={sendEmail()}*//></center>
     </div>
   );
 }

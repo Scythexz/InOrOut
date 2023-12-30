@@ -1,0 +1,32 @@
+GET http://localhost:5000/api/users
+
+###
+
+POST http://localhost:5000/api/login
+Content-Type: application/json
+
+{
+    "email": "lim",
+    "password": "lim"
+}
+
+###
+
+POST http://localhost:5000/api/ins-add-class
+Content-Type: application/json
+
+{
+    "instructor": "lim",
+    "class_name": "English",
+    "class_schedule": "MWF 1:30PM",
+    "class_status": "No Update",
+    "class_code": "XD420"
+}
+
+###
+
+GET http://localhost:5000/api/classesWUser
+
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpbSIsInVzZXJUeXBlIjoiaW5zdHJ1Y3RvciIsImlhdCI6MTcwMzkzMzA4NX0.WT9796_M04uBDDSBEI15gaaLBaN4dAy3gpj6QS5kSI4
+
+###

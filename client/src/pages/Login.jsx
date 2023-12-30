@@ -36,27 +36,27 @@ function Login() {
       } else {
         console.error('Unknown user type');
       }
-      console.log(response.data.userType);
-      if (success) {
-         // Save data to sessionStorage
-         sessionStorage.setItem('token', token);
+      console.log('User Type:', response.data.userType);
+      // if (success) {
+      //    // Save data to sessionStorage
+      //    sessionStorage.setItem('token', token);
          sessionStorage.setItem('userType', userType);
-         sessionStorage.setItem('full_name', full_name);
-         sessionStorage.setItem('email', email);
+      //    sessionStorage.setItem('full_name', full_name);
+      //    sessionStorage.setItem('email', email);
  
-         // Log saved data
-         console.log('-----------');
-         console.log('Token:', token);
-         console.log('User Type:', userType);
-         console.log('Full Name:', full_name);
-         console.log('Email:', email);
+      //   //  Log saved data
+      //    console.log('-----------');
+      //    console.log('Token:', token);
+         console.log('Set Session Storage - User Type:', userType);
+      //    console.log('Full Name:', full_name);
+      //    console.log('Email:', email);
 
          
-        console.log(`Login successful! User Type: ${userType}`);
-        // Now you can use userType to navigate accordingly
-      } else {
-        console.log(`Login failed. ${message}`);
-      }
+      //   console.log(`Login successful! User Type: ${userType}`);
+      //   // Now you can use userType to navigate accordingly
+      // } else {
+      //   console.log(`Login failed. ${message}`);
+      // }
     } catch (error) {
       console.error('Error:', error.response.data.message);
     }

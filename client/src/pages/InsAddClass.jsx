@@ -33,7 +33,7 @@ function InsAddClass() {
           );
     
           console.log(response.data);
-    
+            
           if (response.data.success) {
             console.log('Class added successfully');
             navigate('/ins-home');

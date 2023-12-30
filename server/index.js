@@ -6,30 +6,53 @@ import { Sequelize, DataTypes } from 'sequelize';
 import jwt from 'jsonwebtoken';
 import session from 'express-session';
 import nodemailer from 'nodemailer';
-// starting to implement email here
+import dotenv from 'dotenv';
 
 // Setting Up Express App:
 // Creating an instance of the Express application.
 // Configuring the app to use body-parser for parsing JSON in request bodies.
 // Enabling CORS for handling cross-origin requests.
 
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
-const SECRET_KEY = 'your_secret_key'; // Replace with your secret key
-
+const SECRET_KEY = 'your-secret-key'; // Replace with your secret key
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.json());
 
 
-// Set up express-session middleware
-app.use(
-  session({
-    secret: 'your_session_secret', // Replace with your session secret
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+
+
+
+
+
+
+
+
+// // Set up express-session middleware
+// app.use(
+//   session({
+//     // secret: 'your_session_secret', // Replace with your session secret
+//     secret: 'your-secret-key', // Replace with your session secret
+//     resave: false,
+//     saveUninitialized: true,
+//   })
+// );
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Setting Up Sequelize:
@@ -67,7 +90,11 @@ const Users = sequelize.define('Users', {
 
 // classes
 const Classes = sequelize.define('Classes', {
-  instructor: {
+  instructor_email: {  
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  instructor_name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -80,8 +107,8 @@ const Classes = sequelize.define('Classes', {
     allowNull: false,
   },
   class_status: {
-    type: DataTypes.ENUM('Meeting', 'No Meeting'),
-    allowNull: false,
+    type: DataTypes.ENUM('Meeting', 'No Meeting', 'No Update'),
+    defaultValue: 'No Update', 
   },
   class_code: {
     type: DataTypes.STRING,
@@ -89,6 +116,18 @@ const Classes = sequelize.define('Classes', {
     unique: true,
   },
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Syncing Sequelize Model with Database:
 // Synchronizing the Users model with the database. This creates the Users table if it doesn't exist.
@@ -101,30 +140,43 @@ sequelize.sync().then(() => {
 
 
 // Secret key for JWT, should be stored securely, not hardcoded
-const JWT_SECRET = 'your-secret-key';
+// const JWT_SECRET = 'your-secret-key';
 
 // Middleware for token verification
-const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization;
+// const verifyToken = (req, res, next) => {
+//   const token = req.headers.authorization;
 
-  if (!token) {
-    return res.status(403).json({ success: false, message: 'Token not provided' });
-  }
+//   if (!token) {
+//     return res.status(403).json({ success: false, message: 'Token not provided' });
+//   }
 
-  jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ success: false, message: 'Failed to authenticate token' });
-    }
+//   jwt.verify(token, JWT_SECRET, (err, decoded) => {
+//     if (err) {
+//       return res.status(401).json({ success: false, message: 'Failed to authenticate token' });
+//     }
 
-    req.user = decoded;
-    next();
-  });
-};
+//     req.user = decoded;
+//     next();
+//   });
+// };
+
+ 
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
+  if (token == null) return res.sendStatus(401)
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403)
+    req.user = user
+    next()
+  })
+}
 
 
 
 
-
+// Email function
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -132,6 +184,15 @@ const transporter = nodemailer.createTransport({
     pass: 'blsl iefv otkz vppg', // replace with your email password
   },
 });
+
+
+
+
+
+
+
+
+
 
 
 app.post('/api/send-email', async (req, res) => {
@@ -160,10 +221,54 @@ app.post('/api/send-email', async (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Handling Login Request:
 // Handling a POST request to the /api/login endpoint.
 // Attempting to find a user in the database with the provided password and email
 // Sending a JSON response indicating success or failure.
+
+// app.post('/api/login', async (req, res) => {
+//   const { email, password } = req.body;
+//   try {
+//     const user = await Users.findOne({ where: { email, password } });
+    
+//     if (user) {
+//       const { full_name, userType } = user;
+//       // Create a JWT token upon successful login
+
+//       const token = jwt.sign({ email, full_name: user.full_name, userType: user.userType }, JWT_SECRET, {
+//         expiresIn: '1h', // Token expiration time
+//       });
+
+
+//       console.log(`User logged in - full_name: ${full_name}, email: ${email}, userType: ${userType}`);
+      
+
+//       res.json({ success: true, full_name: user.full_name, userType: user.userType, message: 'Login successful', token });
+
+      
+//     } else {
+//       res.json({ success: false, message: 'Invalid credentials' });
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ success: false, message: 'Internal server error' });
+//   }
+// });
+
+
 
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
@@ -171,18 +276,19 @@ app.post('/api/login', async (req, res) => {
     const user = await Users.findOne({ where: { email, password } });
     
     if (user) {
-      const { full_name, userType } = user;
+      const currentUser = { email: email, userType: user.userType };
       // Create a JWT token upon successful login
 
-      const token = jwt.sign({ email, full_name: user.full_name, userType: user.userType }, JWT_SECRET, {
-        expiresIn: '1h', // Token expiration time
-      });
+      const accessToken = jwt.sign(currentUser, process.env.ACCESS_TOKEN_SECRET);
 
 
-      console.log(`User logged in - full_name: ${full_name}, email: ${email}, userType: ${userType}`);
+      // console.log(`User logged in - full_name: ${full_name}, email: ${email}, userType: ${userType}`);
       
 
-      res.json({ success: true, full_name: user.full_name, userType: user.userType, message: 'Login successful', token });
+      // res.json({ success: true, full_name: user.full_name, userType: user.userType, message: 'Login successful'});
+      res.json({ accessToken: accessToken, userType: user.userType });
+
+      
     } else {
       res.json({ success: false, message: 'Invalid credentials' });
     }
@@ -192,10 +298,29 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+
+
+
+
+
+
+
+
 // Protected route example
-app.get('/api/protected', verifyToken, (req, res) => {
+app.get('/api/protected', authenticateToken, (req, res) => {
   res.json({ success: true, message: 'Protected route accessed', user: req.user });
 });
+
+
+
+
+
+
+
+
+
+
+
 
 // Handling Registration Request:
 // Handling a POST request to the /api/register endpoint.
@@ -215,24 +340,77 @@ app.post('/api/register', async (req, res) => {
 });
 
 
+
+
+
+
+
+
+
+
+
 // Instructor Adding Classes
-app.post('/api/ins-add-class', async (req, res) => {
-  const { class_name, class_schedule, class_code } = req.body;
+app.post('/api/ins-add-class', authenticateToken, async (req, res) => {
+  const {  /*instructor_email, instructor_name,*/ class_name, class_schedule, class_status, class_code } = req.body;
 
   try {
-    const instructor = 'Unknown';
+    const { email, full_name, userType } = req.user;
+    // const classes = await Users.findOne({ where: { email, password } });
 
     const newClass = await Classes.create({
-      instructor,
+      instructor_email: email,
+      instructor_name: full_name,
       class_name,
       class_schedule,
-      class_status: 'Meeting',
+      class_status,
       class_code,
+
+    
     });
 
-    res.json({ success: true, message: 'Class added successfully', newClass });
+    res.json({ success: true, message: 'Class added successfully', newClass, user: { full_name, email, userType }, });
+
+    console.log('Instructor Email:', email);
+    console.log('Instructor:', full_name);
+    console.log('Class Name:', class_name);
+    console.log('Class Schedule:', class_schedule);
+    console.log('Class Status:', class_status);
+    console.log('Class Code:', class_code);
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
+
+
+
+
+
+
+
+
+
+app.get('/api/users', async (req, res) => {
+  try {
+    const users = await Users.findAll();
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+})
+
+
+app.get('/api/classes', async (req, res) => {
+  try {
+    const classes = await Classes.findAll();
+    res.json(classes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+})
+
+app.get('/api/classesWUser', authenticateToken,(req, res) => {
+  res.json(classes.filter(classes => classes.instructor === instructor))
+})

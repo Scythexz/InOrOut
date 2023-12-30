@@ -9,3 +9,4 @@ jsonwebtoken
 bcrypt
 express-session
 nodemailer
+dotenv
