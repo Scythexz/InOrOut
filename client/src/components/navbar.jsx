@@ -1,20 +1,28 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import "../styles/navbar.css";
 import logo from '../img/navlogo.png';
 
 function Navbar() {
   // Retrieve userType from sessionStorage
+  const navigate = useNavigate();
   const userType = sessionStorage.getItem('userType');
-  // const token = sessionStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   // const full_name = sessionStorage.getItem('full_name');
 
   console.log('------------');
   console.log('Retrieved userType from sessionStorage:', userType);
-  // console.log('Retrieved token from sessionStorage:', token);
+  console.log('Retrieved token from sessionStorage:', token);
   // console.log('Retrieved full_name from sessionStorage:', full_name);
 
+const handleLogout = () => {
+  ['token', 'email', 'userType', 'full_name'].forEach((e)=>{
+    sessionStorage.removeItem(e);
+  })
+  
+  navigate('/');
+}
 
 
 
@@ -67,9 +75,9 @@ function Navbar() {
         </li>
 
         <li className="navbar-item">
-          <Link to="/">
+          <button onClick={handleLogout}>
             <i className='fad fa-door-open' ></i>
-          </Link>
+          </button>
         </li>
 
       </ul>

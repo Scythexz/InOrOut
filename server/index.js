@@ -162,16 +162,33 @@ sequelize.sync().then(() => {
 
  
 function authenticateToken(req, res, next) {
+  // console.log(req.headers, req.body);
   const authHeader = req.headers['authorization']
+  // console.log('This is the authHeader:', authHeader);
   const token = authHeader && authHeader.split(' ')[1]
+  // console.log(token);
   if (token == null) return res.sendStatus(401)
+  // console.log('asdaslkdl;');
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    if (err) return res.sendStatus(403)
-    req.user = user
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); //decode the token
+    req.user = decoded; //store it into req.user 
+    console.log(decoded.email) // value
     next()
-  })
+  } catch(e) {
+    console.log(e);
+    return res.sendStatus(403)
+  }
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -276,17 +293,17 @@ app.post('/api/login', async (req, res) => {
     const user = await Users.findOne({ where: { email, password } });
     
     if (user) {
-      const currentUser = { email: email, userType: user.userType };
+      const currentUser = { email: email, full_name: user.full_name, userType: user.userType };
       // Create a JWT token upon successful login
 
-      const accessToken = jwt.sign(currentUser, process.env.ACCESS_TOKEN_SECRET);
+      const token = jwt.sign(currentUser, process.env.ACCESS_TOKEN_SECRET);
 
 
       // console.log(`User logged in - full_name: ${full_name}, email: ${email}, userType: ${userType}`);
       
 
       // res.json({ success: true, full_name: user.full_name, userType: user.userType, message: 'Login successful'});
-      res.json({ accessToken: accessToken, userType: user.userType });
+      res.json({ token: token, userType: user.userType });
 
       
     } else {
@@ -411,6 +428,6 @@ app.get('/api/classes', async (req, res) => {
   }
 })
 
-app.get('/api/classesWUser', authenticateToken,(req, res) => {
+app.get('/api/classesWUser', authenticateToken, (req, res) => {
   res.json(classes.filter(classes => classes.instructor === instructor))
 })

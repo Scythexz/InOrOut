@@ -27,6 +27,6 @@ Content-Type: application/json
 
 GET http://localhost:5000/api/classesWUser
 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpbSIsInVzZXJUeXBlIjoiaW5zdHJ1Y3RvciIsImlhdCI6MTcwMzkzMzA4NX0.WT9796_M04uBDDSBEI15gaaLBaN4dAy3gpj6QS5kSI4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpbSIsInVzZXJUeXBlIjoiaW5zdHJ1Y3RvciIsImlhdCI6MTcwMzkzNzc3OX0.694sjnNeen8IgrxvoppT9kd1E-tTy-NmxRMKIRHROTU
 
 ###

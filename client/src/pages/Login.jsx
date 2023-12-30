@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Loginandregistration.css";
 import logo from '../img/inorout.png';
+import { jwtDecode } from "jwt-decode";
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -19,8 +20,7 @@ function Login() {
         password,
       });
 
-  
-      console.log(response.data);
+      console.log('this is the response data',response.data);
 
       // Check the user type after successful login
       // const userType = response.data.userType;
@@ -39,15 +39,17 @@ function Login() {
       console.log('User Type:', response.data.userType);
       // if (success) {
       //    // Save data to sessionStorage
-      //    sessionStorage.setItem('token', token);
+         sessionStorage.setItem('token', token);
          sessionStorage.setItem('userType', userType);
       //    sessionStorage.setItem('full_name', full_name);
       //    sessionStorage.setItem('email', email);
  
       //   //  Log saved data
       //    console.log('-----------');
-      //    console.log('Token:', token);
+         console.log('Token:', token);
          console.log('Set Session Storage - User Type:', userType);
+         const decoded = jwtDecode(token);
+         console.log('Decoded:', decoded);
       //    console.log('Full Name:', full_name);
       //    console.log('Email:', email);
 

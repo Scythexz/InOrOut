@@ -25,11 +25,11 @@ function InsAddClass() {
               class_schedule: class_schedule,
               class_code: class_code,
             },
-            // {
-            //   headers: {
-            //     Authorization: sessionStorage.getItem('token'),
-            //   },
-            // }
+            {
+              headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+              },
+            }
           );
     
           console.log(response.data);
